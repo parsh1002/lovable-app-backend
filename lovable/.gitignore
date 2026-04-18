@@ -1,0 +1,22 @@
+# Build
+
+target/
+*.log
+
+# Maven wrapper
+
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+
+.idea/
+*.iml
+
+# OS files
+
+.DS_Store
+
+# Environment / secrets (VERY IMPORTANT)
+
+application.yml
+application.properties
