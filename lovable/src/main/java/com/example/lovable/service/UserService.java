@@ -39,6 +39,7 @@ public class UserService {
             throw new RuntimeException("Invalid Password.");
         }
         return jwtService.generateToken(user.getEmail());
+
     }
 
 }

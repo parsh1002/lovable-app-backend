@@ -23,6 +23,7 @@ public class AuthController {
     @PostMapping("/login")
     public AuthResponse Login(@RequestBody LoginRequest request){
 
+
         String token = userService.Login(request.getEmail(), request.getPassword());
 
         return new AuthResponse(token);
