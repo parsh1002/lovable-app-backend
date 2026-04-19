@@ -4,6 +4,7 @@ package com.example.lovable.service;
 import com.example.lovable.entity.Role;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.UserRepository;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final JwtService jwtService;
 
     public User register(User user){
         if(userRepository.existsByEmail(user.getEmail())){
@@ -28,7 +30,7 @@ public class UserService {
         return userRepository.save(user);
 
     }
-    public User Login(String email, String password){
+    public String Login(String email, String password){
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Email already in existence."));
 
@@ -36,7 +38,7 @@ public class UserService {
         if(!bCryptPasswordEncoder.matches(password, user.getPassword())){
             throw new RuntimeException("Invalid Password.");
         }
-        return user;
+        return jwtService.generateToken(user.getEmail());
     }
 
 }

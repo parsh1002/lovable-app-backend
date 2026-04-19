@@ -1,6 +1,7 @@
 package com.example.lovable.controller;
 
 
+import com.example.lovable.dto.AuthResponse;
 import com.example.lovable.dto.LoginRequest;
 import com.example.lovable.entity.User;
 import com.example.lovable.service.UserService;
@@ -19,8 +20,11 @@ public class AuthController {
         return userService.register(user);
     }
 
-    @GetMapping("/login")
-    public User Login(@RequestBody LoginRequest request){
-        return userService.Login(request.getEmail(), request.getPassword());
+    @PostMapping("/login")
+    public AuthResponse Login(@RequestBody LoginRequest request){
+
+        String token = userService.Login(request.getEmail(), request.getPassword());
+
+        return new AuthResponse(token);
     }
 }
