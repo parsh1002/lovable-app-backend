@@ -32,7 +32,7 @@ public class UserService {
     }
     public String Login(String email, String password){
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Email already in existence."));
+                .orElseThrow(() -> new RuntimeException("Email not in existence."));
 
 //        Check password
         if(!bCryptPasswordEncoder.matches(password, user.getPassword())){
