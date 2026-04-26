@@ -1,0 +1,41 @@
+package com.example.lovable.controller;
+
+import com.example.lovable.entity.User;
+import com.example.lovable.repository.LikesRepository;
+import com.example.lovable.repository.UserRepository;
+import com.example.lovable.service.LikesService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/likes")
+public class LikeController {
+
+    private final LikesService likesService;
+    private final UserRepository userRepository;
+
+    @PostMapping("/like/{userId}")
+    public String likeUser(@PathVariable UUID userId) {
+
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+
+        return likesService.likeUser(user, userId);
+    }
+
+    @PostMapping("/test/{username}")
+    public String test(@PathVariable String username) {
+        System.out.println(username);
+        return "LIKE WORKS";
+    }
+}

@@ -1,10 +1,9 @@
 package com.example.lovable.controller;
 
 
+import com.example.lovable.dto.MessageResponse;
 import com.example.lovable.entity.Message;
 import com.example.lovable.entity.User;
-import com.example.lovable.repository.MatchRepository;
-import com.example.lovable.repository.MessageRepository;
 import com.example.lovable.repository.UserRepository;
 import com.example.lovable.service.MessageService;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +14,14 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/messages")
+@RequestMapping("/messages")
 @RequiredArgsConstructor
 public class MessageController {
 
     private final MessageService messageService;
     private final UserRepository userRepository;
 
-    @PostMapping("/{receiverId}")
+    @PostMapping("/send/{receiverId}")
     public String sendMessage(@PathVariable UUID receiverId, @RequestBody String content){
         User sender = (User) SecurityContextHolder
                 .getContext()
@@ -32,13 +31,13 @@ public class MessageController {
         return messageService.sendMessage(sender, receiverId, content);
     }
 
-    @GetMapping("/{userId}")
-    public List<Message> getChat(@PathVariable UUID userId){
+    @GetMapping("getchat/{userId}")
+    public List<MessageResponse> getChat(@PathVariable UUID userId){
         User current = (User) SecurityContextHolder
                 .getContext()
                 .getAuthentication()
-                .getPrincipal()
-                ;
+                .getPrincipal();
+
 
         return messageService.getChat(current, userId);
     }

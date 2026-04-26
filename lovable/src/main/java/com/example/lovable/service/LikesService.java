@@ -30,13 +30,14 @@ public class LikesService {
         Likes like = new Likes();
         like.setUser(currentUser);
         like.setLikedUser(likedUser);
+        likesRepository.save(like);
 
 
         boolean isMatch = likesRepository.existsByUserAndLikedUser(likedUser, currentUser);
 
         if(isMatch){
             User user1 = currentUser.getId().compareTo(likedUser.getId()) < 0 ? currentUser : likedUser;
-            User user2 = currentUser.getId().compareTo(likedUser.getId()) < 0 ? currentUser : likedUser;
+            User user2 = currentUser.getId().compareTo(likedUser.getId()) < 0 ? likedUser : currentUser;
 
             Matches match = new Matches();
             match.setUser1(user1);

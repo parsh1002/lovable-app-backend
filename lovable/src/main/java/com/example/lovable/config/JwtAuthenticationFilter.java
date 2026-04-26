@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
@@ -39,14 +39,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
 
-        // 🔥 Prevent crash
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
         String jwt = authHeader.substring(7);
-
         String email = jwtService.extractEmail(jwt);
 
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -59,7 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(
                                 user,
                                 null,
-                                List.of()
+                                new ArrayList<>()
                         );
 
                 authToken.setDetails(
@@ -67,14 +65,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 );
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
-                System.out.println("HEADER: " + authHeader);
-                System.out.println("JWT: " + jwt);
-                System.out.println("EMAIL: " + email);
-                System.out.println("USER: " + user);
-                System.out.println("VALID: " + jwtService.isTokenValid(jwt, user.getEmail()));
             }
         }
-
 
         filterChain.doFilter(request, response);
     }

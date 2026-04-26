@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Likes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private String id;
 
 //    Who liked

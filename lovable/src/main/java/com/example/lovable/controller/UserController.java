@@ -20,8 +20,11 @@ public class UserController {
 
     @GetMapping("/me")
     public UserResponse getCurrentUser(){
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+//        User user = userRepository.findAll().get(0);
         return new UserResponse(user.getEmail(), user.getUsername(), user.getId());
 
     }
@@ -32,7 +35,7 @@ public class UserController {
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
-
+//        User currentUser = userRepository.findAll().get(0);
 
         return userRepository.findAll()
                 .stream()

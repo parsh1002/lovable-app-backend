@@ -1,5 +1,6 @@
 package com.example.lovable.service;
 
+import com.example.lovable.dto.MessageResponse;
 import com.example.lovable.entity.Message;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.MatchRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
@@ -42,15 +44,22 @@ public class MessageService {
 
     }
 
-    public List<Message> getChat(User currentUser, UUID receiverId){
+    public List<MessageResponse> getChat(User currentUser, UUID receiverId){
         User receiver = userRepository
                 .findById(receiverId).orElseThrow(() -> new RuntimeException("Invalid Username"));
 
-        return messageRepository
-                .findBySenderAndReceiverOrReceiverAndSenderOrderByTimestampAsc(
-                        currentUser, receiver,
-                        currentUser, receiver
-                );
+        List<Message> messages = messageRepository.findBySenderAndReceiverOrReceiverAndSenderOrderByTimestampAsc(
+                currentUser, receiver,
+                currentUser, receiver
+        );
+        return messages.stream()
+                .map(m -> new MessageResponse(
+                        m.getSender().getId(),
+                        m.getReceiver().getId(),
+                        m.getContent(),
+                        m.getTimestamp()
+                ))
+                .toList();
 
     }
 
