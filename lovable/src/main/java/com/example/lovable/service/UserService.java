@@ -4,7 +4,6 @@ package com.example.lovable.service;
 import com.example.lovable.entity.Role;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.UserRepository;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
