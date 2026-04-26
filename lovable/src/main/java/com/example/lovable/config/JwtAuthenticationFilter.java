@@ -67,8 +67,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 );
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+                System.out.println("HEADER: " + authHeader);
+                System.out.println("JWT: " + jwt);
+                System.out.println("EMAIL: " + email);
+                System.out.println("USER: " + user);
+                System.out.println("VALID: " + jwtService.isTokenValid(jwt, user.getEmail()));
             }
         }
+
 
         filterChain.doFilter(request, response);
     }

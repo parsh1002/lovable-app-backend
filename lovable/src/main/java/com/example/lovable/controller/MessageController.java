@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@RestController
 @RequestMapping("/api/messages")
 @RequiredArgsConstructor
 public class MessageController {
@@ -21,7 +22,7 @@ public class MessageController {
     private final MessageService messageService;
     private final UserRepository userRepository;
 
-    @PostMapping("/{receieverId}")
+    @PostMapping("/{receiverId}")
     public String sendMessage(@PathVariable UUID receiverId, @RequestBody String content){
         User sender = (User) SecurityContextHolder
                 .getContext()

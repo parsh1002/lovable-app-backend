@@ -5,10 +5,7 @@ import com.example.lovable.entity.User;
 import com.example.lovable.service.LikesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -19,10 +16,14 @@ public class LikesController {
 
     private final LikesService likesService;
 
-    @PostMapping("/user_Id")
-    public String likeUser(@PathVariable UUID user_Id){
+    @PostMapping("user/{userId}")
+    public String likeUser(@PathVariable UUID userId){
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        return likesService.likeUser(user, user_Id);
+        return likesService.likeUser(user, userId);
+    }
+    @PostMapping("/test")
+    public String test() {
+        return "LIKE WORKS";
     }
 }
