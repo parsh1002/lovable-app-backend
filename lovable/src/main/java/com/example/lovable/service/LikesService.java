@@ -24,6 +24,8 @@ public class LikesService {
 
         User likedUser = userRepository.findById(likedUserId).orElseThrow(() -> new RuntimeException("User Not Found"));
 
+        if(currentUser.getId().equals(likedUserId)) throw new RuntimeException("You cannot lie yourself!");
+
         if(likesRepository.existsByUserAndLikedUser(currentUser, likedUser)){
             return "ALready Liked";
         }
