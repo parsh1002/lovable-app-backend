@@ -1,6 +1,7 @@
 package com.example.lovable.service;
 
 
+import com.example.lovable.dto.UserResponse;
 import com.example.lovable.entity.Role;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.UserRepository;
@@ -15,7 +16,7 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtService jwtService;
 
-    public User register(User user){
+    public UserResponse register(User user){
         if(userRepository.existsByEmail(user.getEmail())){
             throw new RuntimeException("Email Already Exists");
         }
@@ -26,7 +27,9 @@ public class UserService {
 
         user.setRole(Role.USER);
 
-        return userRepository.save(user);
+        userRepository.save(user);
+
+        return new UserResponse(user.getEmail(), user.getUsername(),user.getId());
 
     }
     public String Login(String email, String password){

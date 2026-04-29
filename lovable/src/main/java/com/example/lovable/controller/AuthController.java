@@ -3,6 +3,7 @@ package com.example.lovable.controller;
 
 import com.example.lovable.dto.AuthResponse;
 import com.example.lovable.dto.LoginRequest;
+import com.example.lovable.dto.UserResponse;
 import com.example.lovable.entity.User;
 import com.example.lovable.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public User Register(@RequestBody User user){
+    public UserResponse reister(@RequestBody User user){
         return userService.register(user);
     }
 
