@@ -2,19 +2,14 @@ package com.example.lovable.controller;
 
 
 import com.example.lovable.dto.ChatResponse;
-import com.example.lovable.dto.MessageResponse;
-import com.example.lovable.entity.Message;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.UserRepository;
 import com.example.lovable.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
