@@ -3,7 +3,6 @@ package com.example.lovable.controller;
 import com.example.lovable.dto.ChatMessage;
 import com.example.lovable.dto.TypingIndicator;
 import com.example.lovable.entity.User;
-import com.example.lovable.repository.UserRepository;
 import com.example.lovable.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;

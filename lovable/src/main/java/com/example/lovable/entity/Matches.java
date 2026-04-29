@@ -16,6 +16,7 @@ import java.util.UUID;
                 @UniqueConstraint(columnNames = {"user1_id", "user2_id"})
         }
 )
+
 public class Matches {
 
     @Id

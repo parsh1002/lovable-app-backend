@@ -3,7 +3,6 @@ package com.example.lovable.controller;
 
 import com.example.lovable.dto.ChatResponse;
 import com.example.lovable.entity.User;
-import com.example.lovable.repository.UserRepository;
 import com.example.lovable.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

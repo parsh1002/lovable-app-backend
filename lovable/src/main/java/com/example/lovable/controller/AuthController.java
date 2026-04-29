@@ -9,6 +9,7 @@ import com.example.lovable.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")

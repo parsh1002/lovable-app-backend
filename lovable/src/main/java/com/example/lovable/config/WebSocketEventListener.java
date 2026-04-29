@@ -8,6 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 
+
 @Configuration
 @RequiredArgsConstructor
 public class WebSocketEventListener {

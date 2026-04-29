@@ -1,8 +1,6 @@
 package com.example.lovable.controller;
 
 import com.example.lovable.entity.User;
-import com.example.lovable.repository.LikesRepository;
-import com.example.lovable.repository.UserRepository;
 import com.example.lovable.service.LikesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

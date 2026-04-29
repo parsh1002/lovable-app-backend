@@ -6,13 +6,11 @@ import com.example.lovable.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static tools.jackson.databind.jsonFormatVisitors.JsonValueFormat.UUID;
 
 @RequiredArgsConstructor
 @RestController

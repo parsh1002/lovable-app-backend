@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "messages")
+
 public class Message {
 
     @Id

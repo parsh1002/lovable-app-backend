@@ -18,6 +18,7 @@ import java.util.UUID;
                 @Index(name = "idx_email", columnList = "email")
         }
 )
+
 public class User {
 
 

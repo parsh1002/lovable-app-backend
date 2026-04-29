@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(columnNames = {"user_id", "liked_user_id"})
         }
 )
+
 public class Likes {
 
     @Id
