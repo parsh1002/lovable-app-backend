@@ -41,7 +41,6 @@ public class UserController {
                 .getPrincipal();
 
         return userRepository.findByIdNot(currentUser.getId(), pageable)
-                .map(user -> new UserResponse(user.getEmail(),  user.getUsername(),user.getId()))
-                ;
+                .map(user -> new UserResponse(user.getEmail(),  user.getUsername(),user.getId()));
     }
 }
