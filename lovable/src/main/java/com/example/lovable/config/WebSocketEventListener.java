@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
-import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 
 @Configuration
