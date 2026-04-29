@@ -1,6 +1,7 @@
 package com.example.lovable.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,9 +9,7 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
 @Table(
         name = "lovable_user_data",

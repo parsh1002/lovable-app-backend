@@ -1,6 +1,7 @@
 package com.example.lovable.controller;
 
 import com.example.lovable.dto.ChatMessage;
+import com.example.lovable.dto.TypingIndicator;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.UserRepository;
 import com.example.lovable.service.MessageService;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 
 import java.security.Principal;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +36,19 @@ public class ChatWebSocketController {
                 chatMessage
         );
 
+    }
+
+    @MessageMapping("/chat.typing")
+    public void typing(TypingIndicator msg, Principal principal){
+
+        simpMessagingTemplate.convertAndSendToUser(
+                msg.getName(),
+                "queue/typing",
+                Map.of(
+                       "sender", msg.getName(),
+                        "typing",  msg.isTyping()
+                )
+        );
     }
 
 }
