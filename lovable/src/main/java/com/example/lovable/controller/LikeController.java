@@ -15,13 +15,13 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/likes")
+@RequestMapping("/api/likes")
 public class LikeController {
 
     private final LikesService likesService;
     private final UserRepository userRepository;
 
-    @PostMapping("/like/{userId}")
+    @PostMapping("/{userId}")
     public String likeUser(@PathVariable UUID userId) {
 
         User user = (User) SecurityContextHolder
@@ -31,11 +31,5 @@ public class LikeController {
 
 
         return likesService.likeUser(user, userId);
-    }
-
-    @PostMapping("/test/{username}")
-    public String test(@PathVariable String username) {
-        System.out.println(username);
-        return "LIKE WORKS";
     }
 }

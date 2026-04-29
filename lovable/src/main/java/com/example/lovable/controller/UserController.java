@@ -4,13 +4,15 @@ import com.example.lovable.dto.UserResponse;
 import com.example.lovable.entity.User;
 import com.example.lovable.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Scanner;
+import static tools.jackson.databind.jsonFormatVisitors.JsonValueFormat.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,18 +31,18 @@ public class UserController {
 
     }
     @GetMapping("/users")
-    public List<UserResponse> getAllUsers() {
+    public Page getAllUsers(Pageable pageable) {
+        if (pageable.getPageSize() > 50) {
+            throw new RuntimeException("Page size too large");
+        }
 
         User currentUser = (User) SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
-//        User currentUser = userRepository.findAll().get(0);
 
-        return userRepository.findAll()
-                .stream()
-                .filter(user -> !user.getId().equals(currentUser.getId())) // exclude self
+        return userRepository.findByIdNot(currentUser.getId(), pageable)
                 .map(user -> new UserResponse(user.getEmail(),  user.getUsername(),user.getId()))
-                .toList();
+                ;
     }
 }

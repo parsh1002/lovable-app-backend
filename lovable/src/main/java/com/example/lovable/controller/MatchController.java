@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/matches")
+@RequestMapping("/api/matches")
 public class MatchController {
     private final MatchRepository matchRepository;
     private final UserRepository userRepository;
