@@ -19,7 +19,6 @@ import java.util.UUID;
 public class LikeController {
 
     private final LikesService likesService;
-    private final UserRepository userRepository;
 
     @PostMapping("/{userId}")
     public String likeUser(@PathVariable UUID userId) {

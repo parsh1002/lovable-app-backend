@@ -18,7 +18,6 @@ import java.util.UUID;
 public class MessageController {
 
     private final MessageService messageService;
-    private final UserRepository userRepository;
 
     @PostMapping("/{receiverId}")
     public String sendMessage(@PathVariable UUID receiverId, @RequestBody String content){

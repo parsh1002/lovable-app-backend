@@ -17,7 +17,6 @@ import java.security.Principal;
 public class ChatWebSocketController {
     private final SimpMessagingTemplate simpMessagingTemplate;
     private final MessageService messageService;
-    private final UserRepository userRepository;
 
     @MessageMapping("/chat.send")
     public void sendMessage(ChatMessage chatMessage, Principal principal){

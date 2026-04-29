@@ -21,14 +21,12 @@ public class MatchController {
 
     @GetMapping
     public List<Matches> getMatches(){
-//        String email = (String) SecurityContextHolder
-//                .getContext()
-//                .getAuthentication()
-//                .getPrincipal();
-//
-//        User user = userRepository.findByEmail(email)
-//                .orElseThrow();
-        User user = userRepository.findAll().get(0);
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+
         return matchRepository.findByUser1OrUser2(user, user);
 
 

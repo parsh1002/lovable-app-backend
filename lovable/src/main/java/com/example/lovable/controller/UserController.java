@@ -26,7 +26,6 @@ public class UserController {
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
-//        User user = userRepository.findAll().get(0);
         return new UserResponse(user.getEmail(), user.getUsername(), user.getId());
 
     }

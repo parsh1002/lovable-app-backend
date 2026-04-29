@@ -44,6 +44,7 @@ public class WebSocketAuthInterceptor implements ChannelInterceptor {
                                     null,
                                     new ArrayList<>()
                             )
+
                     );
                 }
             }
