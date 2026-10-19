@@ -61,6 +61,12 @@ com.example.lovable
 
 ---
 
+## 📊 Performance Testing
+
+Evaluated the matches REST API using Apache JMeter under different levels of concurrent load. Recorded average and percentile latency, throughput, and observed error rates across 200K-request test runs.
+
+See the [Performance Testing Report](performance/README.md) for benchmark results, methodology, and JMeter evidence.
+
 ## ⚙️ Setup & Installation
 
 ### 1️⃣ Clone the repository
